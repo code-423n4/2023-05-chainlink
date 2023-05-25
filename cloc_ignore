@@ -1,0 +1,7 @@
+./foundry-lib/
+./vendor/
+./libraries/
+./contracts/applications
+./contracts/pools/USDC/IMessageReceiver.sol
+./contracts/pools/USDC/ITokenMessenger.sol
+./contracts/test/

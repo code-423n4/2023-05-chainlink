@@ -101,5 +101,15 @@ dist
 # DynamoDB Local files
 .dynamodb/
 
-# TernJS port file
-.tern-port
+# Compiler files
+cache/
+out/
+
+# Dotenv file
+.env
+
+# Foundry
+/artifacts/
+
+
+.idea
