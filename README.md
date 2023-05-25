@@ -50,26 +50,26 @@ Automated findings output for the audit can be found [here](add link to report) 
 
 ## Scoping Details 
 ```
-- If you have a public code repo, please share it here:  
-- How many contracts are in scope?:   
-- Total SLoC for these contracts?:  
-- How many external imports are there?:  
-- How many separate interfaces and struct definitions are there for the contracts within scope?:  
+- If you have a public code repo, please share it here: N/A 
+- How many contracts are in scope?: 38
+- Total SLoC for these contracts?: With test files: 9833, Without test files: 2985 
+- How many external imports are there?: 1: Openzeppelin v4.8.0 
+- How many separate interfaces and struct definitions are there for the contracts within scope?: 15 interfaces and ~50 struct definitions
 - Does most of your code generally use composition or inheritance?:   
-- How many external calls?:   
-- What is the overall line coverage percentage provided by your tests?:  
-- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:   
-- Please describe required context:   
-- Does it use an oracle?:  
-- Does the token conform to the ERC20 standard?:  
-- Are there any novel or unique curve logic or mathematical models?: 
-- Does it use a timelock function?:  
-- Is it an NFT?: 
-- Does it have an AMM?:   
-- Is it a fork of a popular project?:   
-- Does it use rollups?:   
-- Is it multi-chain?:  
-- Does it use a side-chain?: 
+- How many external calls?:  N/A
+- What is the overall line coverage percentage provided by your tests?: 97%
+- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?: No  
+- Please describe required context:  N/A 
+- Does it use an oracle?:  Yes, Chainlink DON
+- Does the token conform to the ERC20 standard?:  N/A
+- Are there any novel or unique curve logic or mathematical models?: Merkle multi proof
+- Does it use a timelock function?:  N/A
+- Is it an NFT?: N/A 
+- Does it have an AMM?: N/A 
+- Is it a fork of a popular project?:   No
+- Does it use rollups?:  N/A 
+- Is it multi-chain?:  N/A
+- Does it use a side-chain?: Yes; this is a cross-chain product. EVM compatible.
 ```
 
 # Tests
