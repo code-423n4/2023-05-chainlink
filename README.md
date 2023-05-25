@@ -30,7 +30,7 @@ send messages and transfer value across multiple blockchains.
 A CCIP `lane` is a set of contracts and off-chain DONs(Decentralized Oracle Networks) that enable a message to be securely sent from Chain A to Chain B.
 
 ### Lane Diagram
-![image](https://github.com/code-423n4/2023-05-chainlink/assets/47150934/174925df-7296-4f3f-a786-d96270d35a01)
+![image](https://github.com/code-423n4/2023-05-chainlink/assets/47150934/c954ab33-b856-4306-ab36-5cf79a43a338)
 
 Contracts in white are chain specific, contracts in green are lane specific. The purple `Dapp`s are customer contracts.
 
