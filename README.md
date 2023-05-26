@@ -9,7 +9,8 @@
   - Scout awards: $1,000 USDC 
   - Mitigation Review: $50,000 USDC (*Opportunity goes to top 3 certified wardens based on placement in this audit.*)
 - Join [C4 Discord](https://discord.gg/code4rena) to register
-- Submit findings [using the C4 form](https://code4rena.com/contests/YYYY-MM-sponsorName-contest/submit)
+- Submit findings [using the C4 form](https://code4rena.com/contests/2023-05-chainlink-cross-chain-services-ccip-and-arm-network/submit)
+Chainlink Cross-Chain Services: CCIP and ARM Network
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
 - Starts May 26, 2023 20:00 UTC 
 - Ends June 12, 2023 20:00 UTC 
