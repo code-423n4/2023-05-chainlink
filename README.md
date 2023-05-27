@@ -16,6 +16,8 @@
 
 **IMPORTANT NOTE:** Prior to receiving payment from this audit you MUST become a [Certified Warden](https://code4rena.com/certified-contributor-application/)  (successfully complete KYC). This also applies to bot crews.  You do not have to complete this process before competing or submitting bugs. You must have started this process within 48 hours after the audit ends, i.e. **by June 14, 2023 at 20:00 UTC in order to receive payment.**
 
+❗ Please note that the findings and audit report will remain private to the sponsor team only. 
+
 # Overview
 
 The Cross-Chain Interoperability Protocol (CCIP) provides a standard for developers to build applications that can
