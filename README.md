@@ -1,9 +1,9 @@
 # Chainlink Cross-Chain Services: CCIP and ARM Network audit details
-- Total Prize Pool: $300,000 USDC 
-  - HM awards: $180,250 USDC 
-  - QA awards: $4,875 USDC 
+- Total Prize Pool: $305,000 USDC 
+  - HM awards: $185,000 USDC 
+  - QA awards: $5,000 USDC 
   - Bot Race awards: $5,000 USDC 
-  - Gas awards: $4,875 USDC 
+  - Gas awards: $5,000 USDC 
   - Judge awards: $38,400 USDC 
   - Lookout awards: $15,600 USDC 
   - Scout awards: $1,000 USDC 
