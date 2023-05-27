@@ -327,7 +327,7 @@ The main points of concern would be
 - Re-entrancy
 - Loss of funds
 - Arbitrary execution
-- AFN bypass
+- ARM Network bypass
 - Rate limiting violations
 - DoS
   - We are aware of the potential DoS vector of sending large amounts of tokens back and forth. We believe charging tokens bps to be a sufficient disincentive for this attack vector.
