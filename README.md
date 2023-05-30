@@ -255,6 +255,61 @@ This is why CCIP introduces the notion of CCIP Chain Selectors, a randomly chose
 Upon deploying to a new blockchain, if no chainSelector is available yet, one will be issued.
 These chainSelectors are required for sending txs, as ccipSend requires the destination to be specified with this selector, and not a chainId.
 
+## Active Risk Management Network (ARM)
+
+The Active Risk Management Network is a hybrid system comprising offchain and onchain components:
+
+- There is one ARM contract per supported chain.
+- There are n ARM offchain nodes that continually monitor all supported chains.
+
+The ARM acts as a secondary validation service (or a lightweight form of [n-version programming](https://en.wikipedia.org/wiki/N-version_programming)) that continually monitors the behavior of the primary CCIP system. The ARM implementation aims to be independent from the primary system. This greatly reduces the likelihood that the ARM and the primary system are affected by the same (hypothetical) security vulnerability. The ARM implementation also aims to minimize external dependencies to reduce the risk of supply chain attack. Throughout this document, we generally assume that the ARM is operating correctly unless explicitly otherwise noted.
+
+Note that the ARM only interacts with the various source and destination chains supported by CCIP. It does not interact with the primary system in any other way. Individual ARM nodes also only interact with one another via the chains.
+
+The ARM has two main modes of operations that both run in parallel, Blessing and Cursing.
+
+### Blessing
+
+The ARM continually monitors all Merkle roots of messages that are committed on each destination chain.
+
+Whenever a new Merkle root appears, the ARM will attempt to independently reconstruct it by fetching all messages contained in the Merkle tree from the finalized prefix of the source chain. It will then check that the independently constructed root matches. Due to the [Collision-Resistance property of Merkle trees](https://decentralizedthoughts.github.io/2020-12-22-what-is-a-merkle-tree/), if the Merkle tree contains any message that does not exactly match what the ARM observes on the source chain, the Merkle root observed on the destination chain will not match the reconstructed Merkle root.
+
+Only if the Merkle root matches, the ARM will bless the root: Upon successfully verifying a match, the ARM node will send a vote to bless the root to the ARM contract. The ARM contract keeps track of the votes. Once a quorum of votes has been reached, it will consider a Merkle root blessed.
+
+The CCIP OffRamp contract enforces that only messages in a Merkle root that is considered blessed by the ARM contract can be executed. Consequently, we are protected from security vulnerabilities in the CCIP offchain system that lead to mistakenly committed Merkle roots. The ARM will never bless such a Merkle root.
+
+The ARM owner can undo a mistaken blessing. This is an escape hatch in case of bugs in the offchain blessing logic leading to false blessings.
+   
+### Cursing
+
+The ARM continually monitors all chains for anomalies. If an anomaly is detected by an ARM node, the ARM node will send votes to curse on all appropriate ARM contracts. Once a quorum of such votes has been reached on a chain, the ARM contract will curse and CCIP will be automatically paused on that chain until the situation is assessed by the owner, and the curse is potentially lifted.
+
+Anomalous conditions that would warrant a curse include:
+
+- Finality violations: Finality is violated on one of the source chains
+- Execution safety violations: A message is executed for which there is no matching message on the source chain. Double executions of messages (each message may only be executed once!) also fall into this category.
+
+The ARM owner can also directly trigger a curse.
+
+### ARM Contract
+
+The ARM contract exposes a two-method interface to the other CCIP contracts that corresponds to the two modes of operation
+
+- `isBlessed(taggedRoot)` returns a boolean indicating whether the root is blessed
+- `isCursed()` returns a boolean indicating whether the ARM has cursed
+
+The contract maintains a group of nodes (authenticated by their addresses) that are authorized to participate in the ARM. Each node has an address from which it votes to curse, an address from which it votes to bless, an address from which it can unvote to curse, a curse weight, and a bless weight.
+
+The contract also maintains two thresholds that are used to determine whether a quorum has been reached on blessing/cursing, the blessing threshold and cursing threshold, respectively.
+
+The voting logic for blessings is straightforward: The weights of all votes for a root are added up. If the sum exceeds the blessing threshold, the root is considered blessed.
+
+The voting logic for curses is slightly more complex, because we want to be careful to never accidentally undo a curse: Every vote to curse carries a random 32 byte id assigned by the ARM node that sends the vote. An ARM node may have multiple active votes to curse at any time. An ARM node is considered to have voted to curse if there is at least one active vote to curse by that node. If the sum of the weights of the ARM nodes that have voted to curse exceeds the curse threshold, the ARM contract considers the system cursed.
+
+In case an ARM node erroneously voted to curse (which would imply a faulty RPC or bug in the ARM code) once or multiple times, and while the ARM contract has not cursed, the ARM node has the ability to undo all their curses.
+ 
+If the ARM contract is cursed, only the owner of the contract can interact with it. The owner has the ability, after becoming satisfied that all issues due to which ARM nodes voted to curse have been addressed, to unvote to curse on behalf of ARM nodes. If as a result of this, enough active votes to curse are inactivated such that the sum of weights of ARM nodes with active votes to curse drops below the curse threshold, the curse is lifted.
+
 
 # Scope
 
