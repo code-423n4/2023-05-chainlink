@@ -16,7 +16,13 @@
 
 **IMPORTANT NOTE:** Prior to receiving payment from this audit you MUST become a [Certified Warden](https://code4rena.com/certified-contributor-application/)  (successfully complete KYC). This also applies to bot crews.  You do not have to complete this process before competing or submitting bugs. You must have started this process within 48 hours after the audit ends, i.e. **by June 14, 2023 at 20:00 UTC in order to receive payment.**
 
-❗ Please note that the findings and audit report will remain private to the sponsor team only. As such, there will not be an automated findings report for this audit. 
+❗ Please note that outside of the automated findings output, the findings and audit report will remain private to the sponsor team only. 
+
+## Automated Findings / Publicly Known Issues
+
+Automated findings output for the audit can be found [here](https://gist.github.com/IllIllI000/cc63bcd6a853c0e55a23340fe8a556e1).
+
+*Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
 # Overview
 
