@@ -20,7 +20,7 @@
 
 ## Automated Findings / Publicly Known Issues
 
-Automated findings output for the audit can be found [here](https://gist.github.com/IllIllI000/cc63bcd6a853c0e55a23340fe8a556e1).
+Automated findings output for the audit can be found [here](https://gist.github.com/IllIllI000/cc63bcd6a853c0e55a23340fe8a556e1). See [related note](https://discord.com/channels/810916927919620096/1111039219952009316/1113591463486443671) in the C4 Discord.
 
 *Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
