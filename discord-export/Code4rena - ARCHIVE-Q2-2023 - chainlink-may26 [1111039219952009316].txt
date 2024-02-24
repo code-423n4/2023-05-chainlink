@@ -1,0 +1,2170 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q2-2023 / chainlink-may26
+==============================================================
+
+[05/24/2023 21:16] itsmetechjay (pinned)
+👋 Hello and welcome to the audit channel for the $300,000 USDC **Chainlink Cross-Chain Services: CCIP and ARM Network **audit!
+
+📆 Audit opens Friday, 26 May 2023 20:00 (20:00 UTC) and runs through Monday, 12 June 2023 20:00 (20:00 UTC) (17 days).
+
+Please give a warm welcome to the Chainlink team, particularly @GoLanger, @Rens | Chainlink, @connorstein and @Matt | Chainlink who will be available for questions in the PST and EST timezones.  
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/contests/2023-05-chainlink-cross-chain-services-ccip-and-arm-network
+
+**IMPORTANT NOTE:** Prior to receiving payment from this audit you MUST become a Certified Warden (successfully complete KYC).   This also applies to bot crews.  You do not have to complete this process before competing or submitting bugs. You must have started this process within 48 hours after the audit ends, i.e. by June 14, 2023 at 20:00 UTC in order to receive payment.
+
+❗ Please note that outside of the posted automated findings report, the findings and audit report will remain private to the sponsor team only.
+
+{Reactions}
+🔥 (11) 
+
+[05/24/2023 21:16] itsmetechjay
+Pinned a message.
+
+
+[05/24/2023 21:16] itsmetechjay
+Let's please limit conversation until the audit begins. Thanks!
+
+
+[05/26/2023 20:04] sixiecow
+the lane diagram image is not displaying
+
+
+[05/26/2023 20:04] aviggiano
+The audit page URL is broken
+
+
+[05/26/2023 20:04] aviggiano
+It changed to this one: https://code4rena.com/contests/2023-05-chainlink-cross-chain-services-ccip-and-arm-network
+
+{Embed}
+https://code4rena.com/contests/2023-05-chainlink-cross-chain-services-ccip-and-arm-network
+Code4rena
+Code4rena is a competitive audit platform that finds more high-severity vulnerabilities, more quickly than any other auditing method.
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/c4-og-banner-A38EE.png
+
+{Reactions}
+thankyou (2) 
+
+[05/26/2023 20:05] sixiecow
+it's not displayed on the repo either
+
+{Reactions}
+thankyou 
+
+[05/26/2023 20:07] itsmetechjay
+thank you - we have updated.
+
+
+[05/26/2023 20:12] brevist
+Sorry @Jay | C4 ,
+Can you have a look at the Lane Diagram as well, please?
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/diag-DDEAF.jpg
+
+
+[05/26/2023 20:13] itsmetechjay
+If you refresh the Github repo you'll see it - the audit page will show it soon.
+
+{Reactions}
+👍 
+
+[05/26/2023 20:14] brevist
+Thank you!
+
+
+[05/26/2023 20:58] pwnforce
+Are the contracts in scope already audited? if yes, can we have access to the reports?
+
+{Reactions}
+👍 
+
+[05/27/2023 01:57] 0xrobocop
+Hi sir @Rens | Chainlink , a lane means for example ETH -> ARB being a different lane from ETH -> OP?
+
+{Reactions}
+👍 (2) 
+
+[05/27/2023 04:10] pramod_hs
+@0xRobocop Yes that's right. Src Chain to Dest Chain is a lane.
+
+
+[05/27/2023 04:17] dishwasher84
+Where are the committing and executing DON implemented?
+Maybe the answer is obvious, but I cant find really find the corresponding contracts
+
+
+[05/27/2023 05:44] pramod_hs
+@DishWasher Committing and executing DON are implemented offchain.
+
+
+[05/27/2023 05:47] 0xnirlin
+Any previous audit reports?
+
+
+[05/27/2023 06:11] rensrr
+No previous audit reports to share, no
+
+
+[05/27/2023 06:12] dishwasher84
+So their implementation wont be audited?
+
+
+[05/27/2023 06:13] rensrr
+It will be, just not in this audit
+
+
+[05/27/2023 06:14] dishwasher84
+Allright 👍
+
+
+[05/27/2023 06:26] rensrr
+Just to be clear, these DONs are not Solidity contracts. The OCR2 contracts you see in the repo contain all OCR2 logic. The DONs are offchain code, written in Go that communicate through the OCR2 contracts. For examples you can check the chainlink repo https://github.com/smartcontractkit/chainlink. This repo won't contain the CCIP plugin logic but will contain other OCR2 plugins under `core/services/ocr2/plugins/`
+
+{Reactions}
+👍 
+
+[05/27/2023 07:01] 0xumarkhatab
+Hi there , do we have any Automated Findings for this audit ?
+
+
+[05/27/2023 08:01] madalad
+They'll be released once the bot race has been judged, usually ~24h after the contest start time
+
+{Reactions}
+💯 
+
+[05/27/2023 08:21] 0xumarkhatab
+yeah that's what i thought because bot race was not mentioned there in audit description
+
+
+[05/27/2023 08:27] t.nero
+Is the committing DONs group completely separate from the executing DONs group, or how it'll be chosen for each task? I mean, this is written in the website: "Hundreds of High Quality Nodes", so does it safe to assume that DONs are 100% trusted party, any attack relating to a malicious DONs should be considered invalid?
+
+
+[05/27/2023 08:58] rensrr
+The DON is assumed to have `<= f` faulty or malicious members, with f defined in the OCR2 config. So a single malicious node is not out of scope but a fully malicious DON is.
+
+{Reactions}
+👍 
+
+[05/27/2023 09:42] ulqiorra#8617
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/image-45480.png
+
+
+[05/27/2023 12:59] bytes032
+hey there
+
+
+[05/27/2023 12:59] bytes032
+are the contracts deployed on any kind of testnet?
+
+
+[05/27/2023 15:58] m_rassska
+Any tech docs available besides that .md?
+
+
+[05/27/2023 16:55] rensrr
+Not for the purpose of this audit, no
+
+
+[05/27/2023 16:57] rensrr
+Not on CCIP but if there are questions on the DON or how CL oracles work you can look at the official Chainlink docs
+
+
+[05/27/2023 17:01] 0xnirlin
+Tokens will be audited prior to whitelisting.
+
+
+[05/27/2023 17:01] 0xnirlin
+what tokens are we talking here>
+
+
+[05/27/2023 17:01] 0xnirlin
+which can be transferred across chains?
+
+{Reactions}
+👍 
+
+[05/27/2023 17:28] co0nan
+Does each Router will have its own EVM2EVMOnRamp instance ? or EVM2EVMOnRamp will be called by any router?
+
+
+[05/27/2023 17:28] rensrr
+1 router will call many onramps. There will only exist 1 router per chain
+
+{Reactions}
+👍🏼 
+
+[05/27/2023 17:35] 0k_sec
+@Rens | Chainlink  i have some questions but you don’t receive dms(can’t send dm for a reason!)
+
+
+[05/27/2023 17:35] 0k_sec
+Can you send request i will appreciate it 🙏🏻
+
+{Reactions}
+👍 
+
+[05/27/2023 17:41] rensrr
+@0xkazim an onRamp, commitStore and offRamp together form a lane, yes
+
+{Reactions}
+🔥 
+
+[05/27/2023 17:46] 0k_sec
+.
+
+
+[05/27/2023 18:45] pedroais
+Hi team. Is there one of the devs available for a DM ?
+
+
+[05/27/2023 19:17] rensrr
+My DMs should be open now
+
+
+[05/27/2023 19:42] 0k_sec
+where can i found the automated findings ?!
+
+
+[05/27/2023 19:46] pedroais
+sent
+
+
+[05/27/2023 19:46] alexxander
+Dmd 🙏
+
+
+[05/27/2023 20:32] 0k_sec
+@Jay | C4  i can't find the known issue in the contest, can you please set the link here
+
+
+[05/27/2023 21:04] itsmetechjay (pinned)
+All, we have updated the welcome post at the top of this channel and the audit page on the website, to clarify that all findings for this audit will remain private to the sponsor team. **For this reason, there will be no automated findings report for this audit. **
+
+Bot race participants will be awarded from the $5k pool that was originally announced, but C4 will also be contributing another $5k that will be split among the HM, QA, and Gas pools.
+
+{Reactions}
+👍🏻 (5) thankyou (3) ❔ (2) 
+
+[05/27/2023 21:04] itsmetechjay
+Pinned a message.
+
+
+[05/27/2023 21:08] 0k_sec
+if we submit a findings and it was listed in the  automated findings report, did we get paid for it and if not how can we know it was in the automated finding report before we report it? 
+
+thanks
+
+
+[05/27/2023 21:10] aba1842
+You can just wait 24h or simply submit them and they will be invalidated if included in the findings. I just wait for the findings
+
+
+[05/27/2023 21:10] alexxander
+Point is there will be no automated findings
+
+
+[05/27/2023 21:10] 0k_sec
+it said there is no auto findings
+
+
+[05/27/2023 21:15] itsmetechjay
+You will not be penalized for reporting anything that is listed in the automated findings report as it is not published.
+
+{Reactions}
+👍🏻 (3) 
+
+[05/27/2023 21:36] milotruck
+Just to confirm, our findings will still be valid even if they're already found by the bots?
+
+{Reactions}
+👍🏻 (2) 
+
+[05/27/2023 21:39] franfran5067
+Just for clarification, is this contest going to be judged outside of C4, are we never going to be able to see other wardens findings ?
+
+
+[05/27/2023 21:39] itsmetechjay
+Correct.
+
+
+[05/27/2023 21:47] franfran5067
+any of the CL sponsors available ?
+
+
+[05/27/2023 21:47] itsmetechjay
+The audit will be judged within C4, but no backstage access will be provided. The findings repo and audit report will be kept private.
+
+{Reactions}
+👍 (8) 
+
+[05/27/2023 22:11] kiki_dev
+i++ is back on the table!
+
+{Reactions}
+🤣 (21) 🫡 
+
+[05/27/2023 22:37] aba1842
+Ah, fair, forgot about that
+
+
+[05/27/2023 22:59] aviggiano
+Poor judges. 
+They'll get 100s of dupes
+
+{Reactions}
+🫡 
+
+[05/28/2023 02:15] bytes032
+why though?
+
+
+[05/28/2023 02:16] bytes032
+that literally kills the feedback loop process for the wardens that participated
+
+
+[05/28/2023 02:17] bytes032
+plus, if there are any types of misunderstandings you don’t even get a chance to respond
+
+
+[05/28/2023 02:18] bytes032
+spending 16 days on a contest and potentially missing out on a reward due to that can be quite disappointing and discouraging imo
+
+{Reactions}
+☝️ (9) 
+
+[05/28/2023 02:23] bytes032
+it would be fair to at least enable backstage for the warden’s own findings
+
+{Reactions}
+👍🏻 (20) 
+
+[05/28/2023 02:47] 0xnevi
+Agreed
+
+
+[05/28/2023 04:13] aviggiano
+What is "Atlas" referred to on `EVM2EVMOffRamp.sol`?
+
+
+[05/28/2023 08:41] t1moh
+Do sponsors answer in DM?
+
+
+[05/28/2023 09:58] m_rassska
+If the Executing DON detects an insufficient funds or any other trouble on a dst chain, how much time does it take for DON to retry executing the msg?
+
+
+[05/28/2023 12:02] rensrr
+It is part of our monitoring stack, not very relevant to this audit
+
+
+[05/28/2023 12:02] rensrr
+Yes
+
+
+[05/28/2023 12:03] rensrr
+This value is configurable, we're currently running with about 6 minutes but this can be changed if needed
+
+{Reactions}
+❤️ (2) 
+
+[05/28/2023 13:17] m_rassska
+dmed!
+
+
+[05/28/2023 13:40] evokid
+Hey boss, Dmed you
+
+
+[05/28/2023 14:41] 0k_sec
+I've question, when the `CCIPsend` is called did the message send to `EVM2EVMOnRamp` contract ?
+
+
+[05/28/2023 15:48] viktor_cortess
+Hi everyone. Maybe I'm blind, but I can't find what NOP means?
+
+
+[05/28/2023 15:56] viktor_cortess
+Is it node operator?
+
+{Reactions}
+👍 (2) 
+
+[05/28/2023 15:58] mussucal
+Yep, it is node operator(s).
+
+{Reactions}
+👍 
+
+[05/28/2023 16:53] pramod_hs
+Yes that's right. From Router to EVM2EVMOnRamp contract.
+
+{Reactions}
+👍🏻 
+
+[05/28/2023 17:10] cryptothemex
+Prior to receiving payment from this audit you MUST become a Certified Warden.
+
+is KYC  compulsory for all audits now?
+
+
+[05/28/2023 17:58] shealtielanz
+I'm having problems with doing the kyc, no one is answering me
+
+
+[05/28/2023 18:08] co0nan
+where `EVM2EVMOnRamp.sol` got funded by LINK token in order to be able to pay node fees?
+
+
+[05/28/2023 18:17] aviggiano
+Is there any additional documentation on the ARM cursing/blessing process?
+
+
+[05/28/2023 18:58] 0k_sec
+@GoLanger can you please check your dm
+
+{Reactions}
+👍 
+
+[05/28/2023 20:09] 0k_sec
+did ERC777 supported ?
+
+
+[05/28/2023 20:25] 0k_sec
+and what NOP refers to ?
+
+
+[05/28/2023 20:35] pramod_hs
+No ERC777 is currently not supported.
+
+{Reactions}
+👍🏻 
+
+[05/28/2023 20:35] pramod_hs
+NOP Refers to Node Operators
+
+{Reactions}
+👍🏻 
+
+[05/28/2023 20:35] 0k_sec
+thanks for answering ser
+
+{Reactions}
+👍 
+
+[05/28/2023 20:45] co0nan
+@GoLanger
+
+
+[05/28/2023 20:48] pramod_hs
+User fees are transferred from DApp to EVM2EVMOnRamp in Router. Please refer to ccipSend function https://github.com/code-423n4/2023-05-chainlink/blob/main/contracts/Router.sol#L94
+
+
+[05/28/2023 20:51] co0nan
+Fees got transferred through the feeToken which could be any ERC20 and not necessary LINK token. Am I missing something?
+
+
+[05/28/2023 20:54] pramod_hs
+Yes, that's right, FeeToken can be any ERC20. But should be configured in OnRamp before an ERC20 can be used as FeeToken. Please refer to FeeTokenConfigArgs.
+
+{Reactions}
+👍 
+
+[05/28/2023 21:07] aviggiano
+@GoLanger where can I find more docs about the cursing/blessing process?
+
+
+[05/28/2023 21:26] pramod_hs
+@aviggiano checking wit the team. Will get back to you in a bit.
+
+{Reactions}
+👍 (3) 
+
+[05/29/2023 07:21] rensrr
+Technically ERC777 supports ERC20 right? In that case it would work but we would simply only use the ERC20 logic. I'm not very familiar with ERC777 but if implemented to be fully ERC20 compatible I don't see why it wouldn't work
+
+{Reactions}
+👍🏻 
+
+[05/29/2023 07:25] rensrr
+function `withdrawNonLinkFees` ensures enough LINK is in the contact to pay all nops in LINK before any of the native fee tokens are withdrawn, effectively making it a swap from link -> otherFeeCoins (wrapped native). The owner is able to call this function and they should therefore make sure enough LINK exists in the contract for the owner to receive the non-link tokens
+
+{Reactions}
+thankyou 
+
+[05/29/2023 10:05] marckn
+For a submission of  a medium or high vulnerability, how should I submit a PoC? Is it a md text pasted in the submission form https://code4rena.com/contests/2023-05-chainlink-cross-chain-services-ccip-and-arm-network/submit following these rules https://gist.github.com/IllIllI000/21deaa6a55c95a6ec9ca893009ee494f with comments or do you expect a repo with a test case in a repo?
+
+
+[05/29/2023 11:42] 0xepley
+@Rens | Chainlink sent you a dm
+
+{Reactions}
+👍 
+
+[05/29/2023 11:43] 0xepley
+for POC if you wrote any testcase then you can submit that
+
+{Reactions}
+👍 (2) 
+
+[05/29/2023 11:53] kosedogus
+In this case is it possible for a bot racer to submit QA's that are taken from their bot's findings? I hope bot race participants are not allowed to submit QA within these situations?
+
+{Reactions}
+😅 
+
+[05/29/2023 11:54] kosedogus
+Or any other findings that are found by their bots
+
+
+[05/29/2023 13:49] carlitox477
+@Matt | Chainlink I sent u a dm
+
+
+[05/29/2023 14:07] pedroais
+Hi team
+
+What's the purpose of the allowlist ? Will it be activated?
+
+
+[05/29/2023 14:11] pedroais
+Just saw "allowlist will be removed before public launch"
+
+So I will assume the intention is it will be permanently turned off
+
+
+[05/29/2023 14:17] m_rassska
+```s_wrappedNative``` is it the address behind wrapped version of a native coin. For instsance, for the router on ethereum it's - `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2`?
+
+
+[05/29/2023 15:26] rensrr
+The allowList is currently active as we're in closed beta. When we go public we will remove the allowList code or always have it turned off
+
+{Reactions}
+👍 
+
+[05/29/2023 15:28] rensrr
+For Eth on mainnet, it will be WETH, for Avax on Avalanche it will be WAVAX. If no wrapped version is available on a chain we can deploy one. When multiple exist we will examine the correct one to be used, with adoption being an important aspect in the decision
+
+{Reactions}
+❤️ 
+
+[05/29/2023 17:54] m9800
+@Rens | Chainlink dm
+
+{Reactions}
+👍 
+
+[05/30/2023 06:35] rensrr
+To be clear on this, all I said is they should probably*work*. Not that we officially support or even intend to support erc777. We support ERC20, some other token standards will probably *work* if they are ERC20 compatible. That doesn't mean CCIP supports all those standards and they are all suddenly included in the scope of this audit.
+
+{Reactions}
+👍🏻 (2) 
+
+[05/30/2023 10:29] dishwasher84
+Does the approach of only having a single router contract per chain scale if ccip increases in user numbers?
+
+
+[05/30/2023 10:31] rensrr
+I'm not sure what part of the router wouldn't scale
+
+
+[05/30/2023 10:35] dishwasher84
+Maybe there is some basic misunderstanding on my part, I have not been doing this for too long. 
+I mean the fact that there is one router contract and many users want to access this contracts code.
+Could this lead to congestion, i.e. having to wait until being able to access the contract?
+
+
+[05/30/2023 10:37] rensrr
+It will go as fast as the blockchain allows it. If CCIP is bottlenecked by the underlying blockchain we'd be extremely successful. More contracts does not equal more throughput
+
+{Reactions}
+👍 (2) 
+
+[05/30/2023 11:57] csjaybit
+there is not automated audit findings
+
+
+[05/30/2023 11:57] csjaybit
+so if I run slither or any automated finding tool will I get paid?
+
+
+[05/30/2023 11:58] cloudellie
+Would recommend you do the math first on how many other wardens will be doing the same 🙂 "Get paid" is relative to quality, severity, and number of dupes.
+
+{Reactions}
+👍 
+
+[05/30/2023 12:00] csjaybit
+I know that I have to write quality report
+
+{Reactions}
+👍 
+
+[05/30/2023 12:01] csjaybit
+but still should I include automated findings(ofc after filtering automated findings)?
+
+
+[05/30/2023 12:01] csjaybit
+or just submit manual one?
+
+
+[05/30/2023 12:02] cloudellie
+Technically all such findings will be permitted.
+
+{Reactions}
+👍 
+
+[05/30/2023 12:04] csjaybit
+I mean automated findings might be spammed lol
+
+{Reactions}
+💯 ☝️ 
+
+[05/30/2023 12:14] shubh0412
+But it would be better if we could get the automated findings like before even though you said they would be with the sponsors. 
+**Even the description/title of the findings would be enough just to get an idea.** Otherwise the audit will end up with too many duplicates & thus more time till the results are declared.
+& after a month, everyone just starts getting impatient 🥲 
+A humble request, if possible 🙌🏻
+
+
+[05/30/2023 12:24] cloudellie
+The sponsor team requested that *all* findings for this contest remain private, and that includes the automated findings. https://discord.com/channels/810916927919620096/1111039219952009316/1112124224610517003
+
+{Reactions}
+🫡 (2) 
+
+[05/30/2023 12:40] co0nan
+Would it be possible to get access to our own finding?
+
+
+[05/30/2023 13:57] kartoonjoy
+Started a thread.
+
+
+[05/30/2023 14:21] carlitox477
+@Rens | Chainlink I sent u a dm 😄
+
+
+[05/30/2023 16:09] viktor_cortess
+Hello everyone. Where is a contract with the deposit function for wrapped tokens? IWrappedNative(message.feeToken).deposit{value: feeTokenAmount}();
+
+
+[05/30/2023 16:41] marckn
+In the tests they use WETH <https://github.com/code-423n4/2023-05-chainlink/blob/main/contracts/test/router/RouterSetup.t.sol#L15-L22>,  the setWrappedNative is function is tested with just an address  <https://github.com/code-423n4/2023-05-chainlink/blob/main/contracts/test/router/Router.t.sol#L399-L411>
+
+{Reactions}
+👍 
+
+[05/30/2023 16:44] pramod_hs (pinned)
+Details of ARM workings are added to the Repo now - https://github.com/code-423n4/2023-05-chainlink#active-risk-management-network-arm
+
+{Reactions}
+👍 (4) 
+
+[05/30/2023 16:47] cloudellie
+Pinned a message.
+
+{Reactions}
+👍 
+
+[05/30/2023 19:03] viktor_cortess
+I didn't find any comments about weird erc20 tokens. Do we submit issues with them?
+
+
+[05/30/2023 19:41] 0xtaylor
+If ARM detects an anomaly and executes a Curse. Is the entire lane shutdown,  or only the sending or receiving chain?
+
+
+[05/30/2023 20:34] carlitox477
+@GoLanger I sent u a DM ^ ^
+
+
+[05/30/2023 21:36] rensrr
+Check the Trust Assumptions section in the readme. We are aware of the many strange tokens that exist and will review tokens prior to listing. Some reasons for not listing (not exhaustive) are listed
+
+{Reactions}
+👍 
+
+[05/30/2023 21:38] rensrr
+ARM is per chain, as the contracts can only live on a single chain at a time. When a curse event happens related to e.g. sending chain A that is connected to chain B, C and D, all those chains will receive curse votes. ARM interventions should be rare
+
+
+[05/30/2023 21:49] rensrr
+FYI it's not required to send a friend request to send DMs 🙂 I'll receive them all, just might take some time to get to them depending on when they are sent
+
+
+[05/31/2023 01:10] connorstein
+hey all - feel free to DM me as well, no need to swamp Rens/Matt
+
+
+[05/31/2023 01:52] Hama#9496
+please explain me this :
+✨ All participating wardens must submit an Analysis prior to the closing date. Guidelines and FAQ can be found here. The submission form for Analyses is scheduled to go live June 6, 2023.  
+is that applied to this contest as well?
+
+
+[05/31/2023 03:07] liveactionllamac4
+No, it doesn’t apply to this contest.
+
+
+[05/31/2023 07:27] nikoanon
+Sorry for repeating the question but I really don't see the `deposit` function, in which contract can I find it?
+
+
+[05/31/2023 07:31] rensrr (pinned)
+Connor and Matt are in US timezones, I am in EU. Depending on the time of day it might make sense to ping one or the other
+
+
+[05/31/2023 07:33] rensrr
+We have a WETH9 in the test folder https://github.com/code-423n4/2023-05-chainlink/blob/main/contracts/test/WETH9.sol
+
+{Embed}
+https://github.com/code-423n4/2023-05-chainlink/blob/main/contracts/test/WETH9.sol
+2023-05-chainlink/WETH9.sol at main · code-423n4/2023-05-chainlink
+Contribute to code-423n4/2023-05-chainlink development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/67bf068d-b2ef-41b6-a2ef-d47df17d1518-BA596
+
+{Reactions}
+👍 
+
+[05/31/2023 07:34] nikoanon
+Thank you
+
+
+[05/31/2023 07:42] cloudellie
+Pinned a message.
+
+
+[05/31/2023 10:23] aga7hokakological
+```
+As opposed to the router, this contract is lane specific, meaning there is an onRamp instance for every lane
+``` what are lanes here?
+
+
+[05/31/2023 10:35] rensrr
+Please read the `Overview` section in the readme
+
+{Reactions}
+👍 
+
+[05/31/2023 10:39] aga7hokakological
+So each dapp will have it;'s own lane with single router for each chain?
+
+
+[05/31/2023 10:42] rensrr
+No, not each dapp. Each pair of Source -> Destination chain has a lane
+
+
+[05/31/2023 11:38] carlitox477
+What does the `strict` parameter indicates in `EVMExtraArgsV1` ?
+
+
+[05/31/2023 11:58] aga7hokakological
+It allows sequential message execution. It'll block all other messages from sender till the first message executes
+
+{Reactions}
+👍 (2) 
+
+[05/31/2023 15:12] 0k_sec
+can you check your dm please ?
+
+
+[05/31/2023 16:09] patricksfeir
+Anyone interested in collaborating with me to do some fuzz tests ?
+
+
+[05/31/2023 17:05] gabeitches#3953
+yes'
+
+
+[05/31/2023 18:11] patricksfeir
+Awesome
+
+
+[05/31/2023 18:11] patricksfeir
+Might need one more if there are others interested
+
+
+[05/31/2023 18:48] 0kage
+Hey everyone.. Anyone looking for help understanding the protocol, here is a tweet that might be useful: https://twitter.com/0kage_eth/status/1663971753750609921?s=20
+
+{Embed}
+0kage.eth (@0kage_eth)
+https://twitter.com/0kage_eth/status/1663971753750609921?s=20
+@CyfrinAudits is participating in the Chainlink contest on @code4rena
+
+Before diving into any audit, we like to huddle up, jot down notes & create mental maps
+
+We've decided to share our notes with everyone! Goal is to help fellow auditors working on this incredible initiative
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/FxeSxdTXgAAN9ur-0482A.jpg
+Twitter
+
+{Reactions}
+👍 (18) thankyou 
+
+[05/31/2023 18:53] hansfriese
+Highly recommended for all participants. Thanks @0Kage
+
+
+[05/31/2023 19:37] patricksfeir
+Thank you @0Kage
+
+
+[05/31/2023 19:37] patricksfeir
+how can I run slither on a specific contract ?
+
+
+[05/31/2023 19:37] patricksfeir
+it is throwing an error
+
+
+[05/31/2023 22:14] trebien (pinned)
+Hey @everyone 
+
+**Announcement: ** We will be reverting to what were the stated rules of the audit before it launched, and making the winning bot race report public and valid as we have the approval now from the sponsor to include these findings now as out-of-scope. I know some of you were asking about this and we have communicated otherwise previously, and I'm aware that this will affect the mechanism to an extent. 
+
+However, given that there are still 12 days left we feel that making the report public will be more helpful rather than detrimental to the competition. The eventual findings repo will still be kept private at the request of the sponsor. 
+
+Please accept my sincere apologies as there was some miscommunication on my part leading to this.
+
+{Reactions}
+🙏🏻 (13) 🤝 (9) 👍 (14) 🙏🏼 (5) empathy (8) 4739_Skeletor (4) gummy_bear (5) 
+
+[05/31/2023 22:17] itsmetechjay (pinned)
+Wardens - per trebien's message above, please note that the automated findings output is posted below. 
+
+These are considered publicly known issues and are not eligible for awards.
+
+**🤖 Automated findings: **
+https://gist.github.com/IllIllI000/cc63bcd6a853c0e55a23340fe8a556e1
+
+📄 **Code4rena submission guidelines and automated findings policy: **
+https://docs.code4rena.com/roles/wardens/submission-policy#automated-findings-ineligible
+
+The above link will also be added to the contest README shortly.
+
+{Reactions}
+🙏🏻 (3) 🤝 (3) thankyou (2) 
+
+[05/31/2023 22:17] itsmetechjay
+Pinned a message.
+
+
+[05/31/2023 22:42] itsmetechjay
+Pinned a message.
+
+
+[05/31/2023 22:47] pedroais
+I don't have a stake on this since I didn't participate on the bot race. But I think both mediums are invalid according to the contest description. 
+
+
+- 1
+> The owner is a single point of failure and a centralization risk
+
+The contest info says : 
+> Trust Assumptions
+> Owner for all contracts will be a Committing DON controlled owner contract
+
+There is no single point of failure since the owner will be a DON controlled contract, not an EOA
+
+- 2
+> Unsafe use of transfer()/transferFrom() with IERC20    
+
+This is in cases of non standard ERC20 implementations
+The contest info says :
+> Tokens will be audited prior to whitelisting
+
+Please be coherent with displayed info when judging. The first issue is not valid at all since the owner will be a governance controlled contract. Any potential problems on those contracts is out of scope.
+
+The second issue I think is valid but out of scope since the Chainlink team stated they will audit each token. Therefore, it's implied we should assume they won't approve tokens with non standard behaviour.
+
+I have nothing against these issues being on the report and as I said it doesn't affect me (I didn't participate on the bot race) but it's frustrating to see misleading info on the contest sheet and then see the issues still being accepted.
+
+{Reactions}
+☝️ (3) 
+
+[05/31/2023 22:53] pedroais
+No that's not what I said. I wasn't going to report those issues because I think they are invalid.
+
+
+[05/31/2023 22:53] gwlas
+Hello everyone
+I submitted a new EIP standard that will deal with Financial Bonds (Fixed Income Instrument). The new ERC has been given a number and will be named ERC-7092.
+Here is the link to Ethereum Magicians where your can write a comment, suggestions, and more on the standard. The link to the Interface provided there.
+
+
+[05/31/2023 22:53] gwlas
+https://ethereum-magicians.org/t/erc-7092-financial-bonds/14461
+
+{Embed}
+https://ethereum-magicians.org/t/erc-7092-financial-bonds/14461
+ERC-7092: Financial Bonds
+Implementing a standard API for Financial Bonds. This standard allows Institutions, Corporations, Municipalities, Decentralized Exchanges and Individuals to issue bonds in the Primary Market, to exchange bonds in the Secondary Market, and to redeem bonds when they mature.  The standard defines all the basic properties needed to model a financial...
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/4c1d2f876559adc5ce5f4115fe2019d38ccac3db-92BF8.png
+
+
+[05/31/2023 22:54] shealtielanz
+oh I understand you now
+
+
+[05/31/2023 22:54] shealtielanz
+that's a good point ser
+
+
+[05/31/2023 22:55] illilli000
+in my defense, there is very limited time for these races, and I try to sepend the majority of the time filtering out invalid findings from the bot, and so I look at the `Known issues` section, which was empty, so that's what I went based off of
+
+{Reactions}
+💜 (4) 
+
+[05/31/2023 22:56] pedroais
+That's understandable. I'm not arguing against you. I think the judge should invalidate them. I understand you reporting them because you don't have time to read the documentation in the little time provided. But I think they should be invalidated by the judge.
+
+{Reactions}
+👍 (3) 
+
+[05/31/2023 22:59] shealtielanz
+IMO bots shouldn't be allowed to submit Medium or highs because it lacks context to the depth of the Protocol.  also given the time limit put on them.
+
+
+[05/31/2023 22:59] sockdrawermoney
+judge also has limited time 🙂
+
+{Reactions}
+💯 (3) 
+
+[05/31/2023 23:00] sockdrawermoney
+nice thing is that we get a perfectly imperfect report in the hands of the community very quickly thanks to everyone's hard work
+
+{Reactions}
+✅ (3) 
+
+[05/31/2023 23:01] sockdrawermoney
+we value them! it's not a good use of anyone's time to have a pile of people submit the same high identifiable with automated tools and have it end up being worth 10 cents anyway.
+
+{Reactions}
+👍 
+
+[05/31/2023 23:02] pedroais
+Yes but also someone who did read the documentation could abstain from reporting an invalid issue which is then payed because of the limited time. 
+
+I think we all agree these issues are invalid but there because of the limited time. So the incentive is to create the report with more issues, even if they are invalid since the judge will still award them because of limited time.
+
+I don't want to argue, I love code4rena and your work, it's just that as a warden a lot of time you don't know what to report because you see on the description a certain thing shouldn't be valid and then it's still awarded.
+
+
+[05/31/2023 23:03] sockdrawermoney
+oh I'm sorry, maybe I'm misunderstanding the point you're making then
+
+
+[05/31/2023 23:04] shealtielanz
+😅Well said, back to work then
+
+
+[05/31/2023 23:04] pedroais
+My point is both mediums are invalid according to the statements in the contest documentation
+
+
+[05/31/2023 23:05] sockdrawermoney
+do you mean paid out in bot races? bot races are basically just a ranked best/A/B/C report like gas/QA
+
+
+[05/31/2023 23:05] pedroais
+There are 2 mediums on the report, not just gas/QA. I think the mediums are invalid.
+
+
+[05/31/2023 23:06] alexxander
+there is a bot race pool that's different from main H/M pool
+
+
+[05/31/2023 23:06] sockdrawermoney
+yeah that's the key; it's paid like QA and gas are
+
+
+[05/31/2023 23:07] sockdrawermoney
+so several bots could report the same false positives and in the interest of time, the report could just be shared unedited despite how the judge reviewed those issues
+
+
+[05/31/2023 23:07] sockdrawermoney
+there's no filtering of the report afaik before it gets handed on
+
+
+[05/31/2023 23:07] pedroais
+Ok that makes sense then
+
+
+[05/31/2023 23:07] pedroais
+Thanks
+
+
+[05/31/2023 23:08] sockdrawermoney
+yes sir
+
+
+[06/01/2023 04:03] 0xepley
+Pls don't change the rules mid contest
+
+
+[06/01/2023 04:43] bytes032
+its a good change unless you want the contest to be judged for 3 months
+
+{Reactions}
+☝️ (2) 😀 
+
+[06/01/2023 04:56] 0xadrii
+@Rens | Chainlink sent you a dm
+
+
+[06/01/2023 05:40] 0xepley
+but changing it mid contest is not good
+
+
+[06/01/2023 06:25] rensrr
+Congrats on winning the bot race. No need to apologize 🙂
+
+{Reactions}
+🙏 ➕ 
+
+[06/01/2023 06:27] rensrr
+We agreed that making the results public, like many here asked will help the wardens more than it hurts. We thank you for your patience and flexibility, we know you put a lot into this contest and we want to give you all the help you deserve ❤️ we hope this results in more time to spend on the important issues instead of worrying about bot findings
+
+
+[06/01/2023 06:29] rensrr
+On the validity of the medium findings, the report is shared fully, exactly how it was shared with us. The fact that they are not valid should not negatively impact anyone in the main contest, they don't take away from the prize pool.
+
+{Reactions}
+❤️ (11) thankyou (2) 
+
+[06/01/2023 06:30] rensrr
+Just the discussion on why they are invalid gave everyone here some nice insights I think. Thanks Pedroais for raising this
+
+{Reactions}
+🙌 
+
+[06/01/2023 06:37] rensrr
+Thanks 0Kage, this is why we love C4! People go above and beyond to help each other out and share well compiled information ❤️ thanks for work, and thanks for Cyfrin being committed to working so publicly
+
+{Reactions}
+💜 (7) 
+
+[06/01/2023 10:13] neon2835
+Does ARM and AFN refer to the same thing? sorry for the stupid question
+
+{Reactions}
+✅ 🫵 
+
+[06/01/2023 10:21] coffiasd
+this content need my account complete kyc verify?
+
+
+[06/01/2023 10:22] coffiasd
+just see that :code4rena:
+
+
+[06/01/2023 10:33] co0nan
+Yes
+
+
+[06/01/2023 11:01] rensrr
+At the risk of information overload, here's a diagram picturing the system over multiple chains. Do note the arrows from offRamp -> PriceRegistry are not drawn for Optimism due to how messy that would become, they are drawn on other chains. The diagram also includes an in progress lane upgrade. We would not deploy unidirectional lanes in production and we do not (yet) support non-evm, these are just to illustrate the interactions between contracts and high-level concepts.
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/multi-chain-overview-3D264.png
+
+{Reactions}
+👍 (15) ❤️ (11) 
+
+[06/01/2023 12:08] marckn
+I just read the bot race, the are 3 more entries M-01, M-02, M-03 classified by the judge as Low <https://gist.github.com/IllIllI000/cc63bcd6a853c0e55a23340fe8a556e1> I cannot find these in the bot race report. Even that a judge classified them as low, I am courious to know what were they about. | [M‑01] | Direct supportsInterface() calls may cause caller to revert | 1 | L |
+| [M‑02] | Contracts are vulnerable to fee-on-transfer accounting-related issues | 1 | L |
+| [M‑03] | Excess funds sent via msg.value not refunded | 1 | L |
+
+
+[06/01/2023 12:22] rensrr
+Just from the description I can see what 2 and 3 relate to. M-02 would be out of scope as we audit tokens prior to listing. The codebase clearly isn't designed to work with fee-on-transfer tokens
+M-03 is addressed in a comment in the router `// Note we take the whole msg.value regardless if its larger.`
+
+{Reactions}
+👍 
+
+[06/01/2023 12:29] illilli000
+they were invalid so I asked that a version with the ones I saw afterward were incorrect, be removed to minimize confusion, since I ran out of time for this race and didn't get to filter as well as I'd like to have
+
+{Reactions}
+👍 (3) thankyou (4) 
+
+[06/01/2023 13:30] marckn
+Thanks Rens, any reason why on this chart Polygon and Cosmos have no Token pools?
+
+
+[06/01/2023 13:58] rensrr
+Adding even more contracts would not make it any better :p also, technically CCIP runs fine without token pools. Would just not support any token txs and be in data-only mode
+
+{Reactions}
+😆 
+
+[06/01/2023 14:07] marckn
+Thanks.
+
+
+[06/01/2023 14:19] co0nan
+in which cases there will be a different `curseId` to vote for at same time?
+
+
+[06/01/2023 14:32] trust90
+Have to commend Chainlink for the best in-code documentation I've seen in a contest. Appreciate this quality of life improvement
+
+{Reactions}
+plus (11) 💯 (12) ❤️ (7) 
+
+[06/01/2023 14:59] co0nan
+@Rens | Chainlink appreciate your help ^^
+
+
+[06/01/2023 15:06] patricksfeir
+how can I run slither on a single contract ? slither . --foundry-out-directory artifacts
+
+
+[06/01/2023 15:06] patricksfeir
+slither contracts/Router.sol --foundry-out-directory artifacts didn't work
+
+
+[06/01/2023 15:07] patricksfeir
+it throwed an error
+
+
+[06/01/2023 15:24] 0k_sec
+what curseID refers to ? i cant understand a little bit about what the curseID is refers to in the ARM contract?!
+
+
+[06/01/2023 16:11] rensrr
+A curseID can be created by any ARM member to indicate they want to curse. They create this value themselves and it should correspond to a single curse reason. Multiple can curseIDs can be active at the same time, if there are multiple reasons to curse. e.g. multiple source chains have deep re-orgs.
+
+{Reactions}
+thankyou (3) 
+
+[06/01/2023 17:53] carlitox477
+@GoLanger I sent u a DM
+
+
+[06/02/2023 04:16] t.nero
+What is the purpose of `report.interval.min` and `report.interval.max` in `CommitStore.sol`? Does the `s_minSeqNr` not suppose to be increased by 1 for each call, I mean, why `s_minSeqNr = report.interval.max + 1`?
+
+
+[06/02/2023 04:49] m_rassska
+I haven't looked into CommitStore yet, but it seems that if you have a report of n msgs, after verifying the whole report, `s_minSeqNr = report.interval.max + 1` seems okay, because interval [x; x + n] has been finilized. Maybe, i'm missing smth here...
+
+
+[06/02/2023 06:11] dishwasher84
+The forwardFromRouter function checks if the destination address is 32 bytes long as it should be abi encoded. 
+https://github.com/code-423n4/2023-05-chainlink/blob/f7a6de4a5292478dbf5b0750a931f8fd957916e8/contracts/onRamp/EVM2EVMOnRamp.sol#L272-L273
+I was looking at the ABI specification which says that addresses 160 bytes long. 
+Am I missing something here?
+
+{Embed}
+https://github.com/code-423n4/2023-05-chainlink/blob/f7a6de4a5292478dbf5b0750a931f8fd957916e8/contracts/onRamp/EVM2EVMOnRamp.sol
+2023-05-chainlink/EVM2EVMOnRamp.sol at f7a6de4a5292478dbf5b0750a931...
+Contribute to code-423n4/2023-05-chainlink development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/67bf068d-b2ef-41b6-a2ef-d47df17d1518-BA596
+
+
+[06/02/2023 06:12] dishwasher84
+https://docs.soliditylang.org/en/v0.8.20/abi-spec.html#:~:text=equivalent%20to%20uint160%2C%20except%20for%20the%20assumed%20interpretation%20and%20language%20typing.%20For%20computing%20the%20function%20selector%2C%20address%20is%20used
+
+
+[06/02/2023 06:20] m_rassska
+uint160 is 20 bytes which is 160 bits(e.g. 2^3 * 20)
+uint256 is 32 bytes which is 256 bits(e.g. 2^3 * 32)
+
+{Reactions}
+👍 
+
+[06/02/2023 07:20] rensrr
+A report can contain multiple messages. If it only contains a single message the s_minSeqNr will be incremented by 1 but if it contains N it will be incremented by N
+
+
+[06/02/2023 07:23] rensrr
+Abi encoding adds extra zeros to fill out an entire storage slot, which is 32 bytes. You can play around with abi encoding here https://adibas03.github.io/online-ethereum-abi-encoder-decoder/#/encode
+
+Select Encode and type `address` as the type to see how encoding an address would work
+
+{Embed}
+https://adibas03.github.io/online-ethereum-abi-encoder-decoder/
+Online Ethereum abi encoder
+A quick online tool to abi-encode constructor arguments used in ethereum's solidity
+
+
+[06/02/2023 08:47] dishwasher84
+Great, thanks!
+
+
+[06/02/2023 15:53] wtin
+@Rens | Chainlink sent you a dm
+
+{Reactions}
+👍 
+
+[06/02/2023 16:54] yellowbirby
+Hey, Q about trust assumptions, who to best DM? @GoLanger  @Rens | Chainlink @connorstein
+
+
+[06/02/2023 16:55] rensrr
+try @connorstein , I'll be gone for today
+
+
+[06/02/2023 16:58] yellowbirby
+thx, actually found the answer on my own 🙂
+
+
+[06/02/2023 20:16] 0k_sec
+@connorstein can you check your dm
+
+
+[06/02/2023 21:54] yellowbirby
+USDT is nonstandard, it’s be hell of a statement not to include it cos of it if one could simply save transfer
+
+
+[06/03/2023 02:06] yellowbirby
+@connorstein @Rens | Chainlink could we get a#a bit more info about the exec DON?
+
+
+[06/03/2023 02:40] limbooo9
+I can't send private message to you ,revert with errors. also @connorstein the same error occurred! 😄
+
+
+[06/03/2023 07:41] rensrr
+Also can't DM you, appears to be something on your side as many other people from this channel can DM me without issues
+
+{Reactions}
+thankyou 
+
+[06/03/2023 13:50] neon2835
+The real Merkle tree data is stored off-chain, that is, Committing DON and Executing DON, right? Only the merkleroot is saved on the chain, and the merkleroot is the basis for the association of on-chain and off-chain data. Am I right?
+
+
+[06/03/2023 13:51] neon2835
+Hey there
+
+
+[06/03/2023 13:51] neon2835
+👀
+
+
+[06/03/2023 14:12] franfran5067
+In my understanding, yes
+
+
+[06/03/2023 14:13] franfran5067
+then ARM vote to bless or curse the root and any transmitter DON can send the batch
+
+
+[06/03/2023 14:40] rensrr
+The event that is emitted on the onRamp contains the leaves used to construct the merkle tree. The message itself isn't stored, just emitted
+
+{Reactions}
+🫡 (3) 
+
+[06/04/2023 03:56] comradektg
+Hi @Rens | Chainlink , can you check you DM? 😄
+
+
+[06/04/2023 04:18] thevanquiser
+what is ``s_liquidityProviderBalances`` in LockReleaseTokenPool contract
+
+
+[06/04/2023 08:29] 0xnirlin
+what is the purpose of destGasOverHead when we have the multiplier
+
+
+[06/04/2023 08:52] rensrr
+Simple bookkeeping of entities that provided liquidity to the token pool
+
+
+[06/04/2023 08:53] rensrr
+They serve a different purpose, one adds and the other multiplies. If you have a gas cost of 500k, a multiplication of 110% is very different from 200k x110%, while adding a static 50k would be the same for both txs.
+
+
+[06/04/2023 09:12] dishwasher84
+If I understand it correctly, the Executing DON listens for ```CCIPRequested(message)``` and ```ReportAccepted(report)``` events.
+The message contains the messageID, which is the hash used as the leaf of a merkle tree (the merkle root of which is contained in the report).
+So the executing DON has the merkle root constructed from a bunch of messages in the commiting DON as well as all the leaf hashes as they were emitted by the OnRamp. But how does it know which messages, i.e. messageIDs to use to reconstruct a received merkle root?
+Are the emitted messages always included in reports in the order in which they were received?
+
+
+[06/04/2023 09:15] rensrr
+The commitReport includes a sequence number range. Yes, the leaves in the report are ordered based on their sequence number.
+
+{Reactions}
+👍 (2) 
+
+[06/04/2023 09:57] viktor_cortess
+Hi everyone. Could you explain more precisely what is reportContext ?
+,
+// reportContext consists of:
+    // reportContext[0]: ConfigDigest
+    // reportContext[1]: 27 byte padding, 4-byte epoch and 1-byte round
+    // reportContext[2]: ExtraHash
+
+But at the same time I see in test the following:
+
+function testTransmit3SignersSuccess_gas() public {
+    vm.pauseGasMetering();
+    bytes32[3] memory reportContext = [s_configDigest, s_configDigest, s_configDigest];
+
+So it looks like  [1] an [2] are not so important if they are simply replaced with s_configDigest ?
+
+
+[06/04/2023 10:02] viktor_cortess
+Especially about epoch and round
+
+
+[06/04/2023 10:32] viktor_cortess
+As I understand it's a roundId and an epoch is the time between roundIds. So several reports can be transmitted with the same roundId and the same epoch?
+
+
+[06/04/2023 11:07] dishwasher84
+different round ids within same epoch I would say:
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/image-87498.png
+
+{Reactions}
+☝️ 
+
+[06/04/2023 13:18] marckn
+My interpretation is: CCIP  uses the reportContext configDigest to revert on a config mismatch and to emit the configDigest with the epoch in the transmitted event. not more.
+
+
+[06/04/2023 20:28] 0k_sec
+which on in the team can answer Q in this time(timezone) ?!
+
+thanks
+
+
+[06/05/2023 06:19] nobody2018
+@Rens | Chainlink Are the erc20 of the three pools all standard erc20? Consider the weird erc20?
+
+
+[06/05/2023 06:26] gjaldon
+@nobody2018 https://github.com/code-423n4/2023-05-chainlink#trust-assumptions
+
+{Embed}
+https://github.com/code-423n4/2023-05-chainlink
+GitHub - code-423n4/2023-05-chainlink
+Contribute to code-423n4/2023-05-chainlink development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/67bf068d-b2ef-41b6-a2ef-d47df17d1518-BA596
+
+
+[06/05/2023 06:26] gjaldon
+There's a section there about weird tokens
+
+
+[06/05/2023 06:42] nobody2018
+thanks.
+
+
+[06/05/2023 10:01] milotruck
+Hey @Rens | Chainlink, sent you a DM!
+
+
+[06/05/2023 10:15] rensrr (pinned)
+Hi all, answering some questions that get repeated in DMs quite often
+
+- for the purposes of this audit, assume `n` = 3f + 1. Let's say f = 5 => n = 16. Since we require (n+f)/2 + 1 signatures, this means (16+5)/2+1 = 11 signatures.
+
+- The rate limiting in ramps if different from the token pool rate limiting in the sense that ramps use USD and pools use the token itself. This is intentional, as the ramps rate limit over many tokens and require a shared denomination. The pools only rate limit a single token.
+
+- If `s_wrappedNative` is set to address(0), this means there is no auto wrapping native, therefore, native payments are disabled. 
+
+- For LINK NOP payments in onRamp, some entity needs to supply the LINK tokens so the non-link tokens can be redeemed. This can be the owner but technically anyone is able to send link to the contract to unlock the non-link fee tokens.
+
+{Reactions}
+🙏🏼 (6) 
+
+[06/05/2023 13:00] 0k_sec
+@connorstein check dm please
+
+
+[06/05/2023 13:05] cloudellie
+Pinned a message.
+
+
+[06/05/2023 13:07] teawaterwire
+hey @Rens | Chainlink - just sent you a dm 🙂
+
+{Reactions}
+👍 
+
+[06/05/2023 15:47] yasooox
+@Rens | Chainlink Dmed you.
+
+
+[06/06/2023 09:58] dishwasher84
+Does the attestation that is used by the MessageReceiver contain the signatures of the Execution DON or is it rather signatures by the TokenPool provider?
+
+
+[06/06/2023 12:01] kowalski_analysis
+@DishWasher I might be completely wrong but I think Circle is responsible for the attestation. (Docs say so https://developers.circle.com/stablecoin/docs/cctp-technical-reference#block-confirmations-for-attestations)   So the signatures should belong to Circle's attestation service.
+
+{Reactions}
+✅ (2) 
+
+[06/06/2023 13:02] dishwasher84
+That's what I thought as well thanks!
+
+{Reactions}
+👍 
+
+[06/06/2023 21:32] 0k_sec
+what the `_bitmapGet` function do in the `ARM.sol` contract ?
+
+
+[06/07/2023 05:52] 0xnirlin
+So from what i undestand is:
+
+
+on the 128 bit bitmap it first check if the index is in the right range of 128 by assertion.
+
+
+next we have the line:      return bitmap & (uint128(1) << index) != 0;
+
+uint128(1) gives us a binary where except for the last bit every bit is 0 and last one is 1.
+
+
+Like this =  000000....00001
+
+next we left shift it by index.
+
+Suppose that index = 3 
+
+So the expression uint128(1) << index, gives us  000000....01 000,  we shifted one to three indices on left.
+
+Than we perform the bitwise And operation.
+
+Lets say the bitmap is 001110...11001
+
+so bitwise and operator will do the following:
+0 0 0 0 0 0....0 1  0 0 0
+0 0 1  1  1  0...  1  1 0 0  1
+......................................
+0 0 0 0 0 0....0  1 0 0  0
+
+which gives us the 1, so will return true, if it was 0 would have return false.
+
+{Reactions}
+❤️ (2) 🔥 (2) 
+
+[06/07/2023 07:31] rensrr
+The bitmaps in ARM and offRamp are for efficient storage, greatly reducing the number of slots we write to by packing multiple values into a single slot
+
+{Reactions}
+👍🏻 (2) 
+
+[06/07/2023 10:29] viktor_cortess
+Hello, am I understanding this right? onRamp contract is lane-specific, so for example,  if I want to send a message from ETH to Polygon, there will be an onRamp contract deployed on Eth mainnet responsible for a Eth-Polygon connection and other onRamp contracts that also deployed on Eth mainnet but for other destination chains?
+
+
+[06/07/2023 10:32] aga7hokakological
+yes
+
+{Reactions}
+👍 
+
+[06/07/2023 10:46] 0k_sec
+Thanks man 🫡
+
+
+[06/07/2023 10:46] 0k_sec
+Thanks ser
+
+
+[06/07/2023 12:36] bytes032
+this might help you
+
+
+[06/07/2023 12:37] 0k_sec
+Thanks bro I’ll check it🫡
+
+
+[06/07/2023 12:46] bytes032
+moved it to #🏫education , cause i feel thats where its more appropriate to be
+
+{Reactions}
+👍🏻 
+
+[06/07/2023 18:28] mrpotatomagic
+@Rens | Chainlink sent a dm
+
+
+[06/07/2023 19:38] viktor_cortess
+Is it normal that every compilation before running tests takes 2 minutes?
+
+
+[06/07/2023 21:18] popular
+if you change `optimizer = false` in foundry.toml it'll compile a lot faster
+
+{Reactions}
+🤣 🔥 
+
+[06/07/2023 21:18] popular
+but just be aware you're turning off the optimizer hah
+
+
+[06/07/2023 21:19] popular
+could potentially mess w/ some of the gas checks etc
+
+
+[06/07/2023 21:20] popular
+like 15sec to compile everything vs 72sec for me
+
+
+[06/08/2023 05:07] mrpotatomagic
+hi everyone, I have been running forge test --gas-report on foundry but in the function table I do not see the public getter functions for state variables marked public. Can someone please tell me if it is possible to see them and their gas costs?
+
+
+[06/08/2023 08:00] akshaysrivastav
+As the protocol flow passes via offchain oracles how can an issue be considered as High? It can be always argued that those offchain oracles contain prevention mechanism against the attack
+
+
+[06/08/2023 08:04] rensrr
+If you find a bypass for execution that allows you to e.g. make an arbitrary call via our Router contract, feels like a high. Or draining a token pool, or somehow getting the burnMint pool to mint funds that are not locked/burned on another chain. There's many many things that can still be a high, even with offchain oracles involved. (disclaimer, C4 judges, we just asnwer questions so I cannot state for a fact is something is a high but check the readme  `Areas of concern` section)
+
+{Reactions}
+👍 (5) 
+
+[06/08/2023 11:19] nobody2018
+@Rens | Chainlink Dmed you.
+
+{Reactions}
+✅ (2) 
+
+[06/08/2023 13:50] mrpotatomagic
+@Rens | Chainlink dmed you
+
+{Reactions}
+✅ 
+
+[06/08/2023 15:57] dec3ntraliz3d
+@Rens | Chainlink sent a dm. Thanks
+
+{Reactions}
+✅ 
+
+[06/08/2023 16:57] brynden.rivers
+I don't understand why `networkFeeAmountUSD` and `destGasOverhead` depend on the feeToken used. Like, I would expect they only depend on the destination chain. Instead they are on the `FeeTokenConfig` mapping, so one for each token. Why?
+
+
+[06/08/2023 19:17] franfran5067
+Probably to incentivize the use of certain tokens, such as LINK, as a first guess
+
+
+[06/08/2023 21:25] rensrr
+It was actually cheaper gas wise as we had room left in the slot. But it also gives flexibility so it's a win win
+
+
+[06/09/2023 07:16] coffiasd
+Can I ask how the upgrade process for on-ramp and off-ramp works?
+
+
+[06/09/2023 07:51] rensrr
+We always upgrade the entire lane, so onRamp, commitStore and offRamp. We deploy the new lane and allow the new lane on the chain contracts (priceRegistry, token pools and destination router). When ready to upgrade we point the source router to the new onRamp and from then on all txs will go through the new lane. The old onRamp is immediately no longer used, but the commitStore and offRamp can still process the txs that are in flight for the old lane.
+
+{Reactions}
+🙏🏻 (7) 
+
+[06/10/2023 07:01] m_rassska
+how the `multiplier` is expected to be scaled? 
+Particularly, don't understand this one:  `will be tuned according to actual execution costs`. Is there a way to know the actual exec cost by a certain  `message.feeToken`?
+
+
+[06/10/2023 13:03] rensrr
+We will adjust the multiplier according to the data we collect over time. If it turns out that users are underpaying compared to the actual cost of executing the transactions, it might go up a bit. If we see fees are outpacing the gas expenses we can lower the multiplier. We're aiming for the customer gas cost to exactly cover the execution cost.
+
+{Reactions}
+❤️ (2) 
+
+[06/10/2023 13:04] rensrr
+We can only know the actual cost after the ex is executed on the destination chain, so the multiplier will be lagging behind a bit
+
+{Reactions}
+👍 
+
+[06/10/2023 14:36] 0k_sec
+i've question, what will happen to a node that is correct or trusted node for now and then the node doing some maliciously act and turn into f node? did this node loose all his power in the community ?!
+
+
+[06/10/2023 16:43] marckn
+With what multiplier value will you start?
+
+
+[06/10/2023 16:48] rensrr
+I'm not completely sure what the question is. As long as at most f nodes act maliciously, the protocol is completely secure.
+
+
+[06/10/2023 16:49] rensrr
+There's no values that are public yet
+
+{Reactions}
+✅ 
+
+[06/10/2023 17:00] 0k_sec
+Can you check dm please i want to explain it there
+
+
+[06/12/2023 10:21] mrpotatomagic
+@Rens | Chainlink dmed you
+
+{Reactions}
+✅ (2) 4739_Skeletor 
+
+[06/12/2023 15:26] kartoonjoy
+Hi @Matt | Chainlink!
+
+
+[06/12/2023 15:29] rensrr
+Hi all! I'll be out for the night until the contest closes. @connorstein is also unavailable so please direct all your last minute questions to @Matt | Chainlink
+
+{Reactions}
+👏 (2) 👋 
+
+[06/12/2023 19:34] prapandey031
+The way bitmaps have been used to store states is super hacky!
+Love it!
+
+
+[06/12/2023 19:57] hunter_w3b
+final minutes :hi5:
+
+
+[06/12/2023 20:00] trust90
+gg @Chainlink :chefskiss:
+
+{Reactions}
+🔥 (8) 
+
+[06/12/2023 20:02] soosh4618
+Cleanest code and docs I have seen :10_10:
+
+
+[06/12/2023 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺wardens The **Chainlink** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the audit is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a Contest-Admin if you have questions along the way!
+
+{Reactions}
+code4rena (11) 💯 (4) 😴 (4) 👽 
+
+[06/12/2023 20:02] 0xthec0der
+Agree^^ Used to do such fancy hacks in microcontroller firmware development a lot. It's refreshing. 😅
+
+
+[06/12/2023 20:03] hunter_w3b
+time to rest🦾 :chefskiss: 😴
+
+{Reactions}
+😀 (2) 
+
+[06/12/2023 20:09] c145h
+@Matt | Chainlink wanted to ask questions about token whitelisting
+do these apply to both fee tokens and normal (to transfer) tokens?
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/image-D6B4E.png
+
+
+[06/12/2023 20:10] pedroais
+Can I send a last minute submission ?
+
+
+[06/12/2023 20:10] pedroais
+I was writing it and time went off
+
+{Reactions}
+🥲 (2) 
+
+[06/12/2023 20:11] pedroais
+@CloudEllie @kartoonjoy | C4 🎇🎇
+
+
+[06/12/2023 20:13] kartoonjoy
+Ah, I'm sorry you ran out of time. To be fair to the other wardens though, we won't be able to accept the late submission.
+
+
+[06/12/2023 20:14] pedroais
+Ok. I will communicate it privately in case it's useful.
+
+{Reactions}
+thankyou (2) 💜 
+
+[06/12/2023 20:14] matt_cll#3121
+Auditing prior to whitelisting and not listing rebasing/fee on transfer tokens apply to all tokens; owner mostly refer to the suite of contracts in the audit, token issuers will most likely maintain ownership for tokens
+
+
+[06/12/2023 20:19] 0k_sec
+This contest was amazing, thanks to c4 team and chainlink team. Specially @Rens | Chainlink who answered most of the questions 🫡
+
+{Reactions}
+🔥 (7) 👏 (7) 
+
+[06/12/2023 20:20] pedroais
+Thks @Rens | Chainlink !!
+
+
+[06/12/2023 20:21] c145h
+Thank you
+
+
+[06/12/2023 20:28] pedroais
+Question @Rens | Chainlink , @Matt | Chainlink 
+
+Is there any possibility, after this is judged that you decide to make the report public ? It would be great for us to see what we missed or what was accepted / not accepted. 
+
+Many of us put many hours into this and we would love to know which of our submissions were valid. 
+
+If this is ever a possibility please consider allowing code4rena to publish the report.
+
+{Reactions}
+💯 (14) 
+
+[06/12/2023 20:33] franfran5067
+Should we expect a longer judging period for this contest as it's only in-house, or a normal time scale ?
+
+
+[06/12/2023 20:47] franfran5067
+Are we allowed to publish a write-up of our findings ?
+
+
+[06/12/2023 20:58] rensrr
+Thank you all for your time and questions during this audit! ❤️  Hope to see your names back in the findings
+
+{Reactions}
+10_10 (7) 🚀 (3) 🎉 
+
+[06/12/2023 21:07] milev8
+My birthday May 26
+
+{Reactions}
+🤔 🎉 (2) 
+
+[06/12/2023 21:07] milev8
+🙂
+
+
+[06/12/2023 22:42] itsmetechjay
+No, the findings need to remain private per the sponsor's request.
+
+{Reactions}
+👍 
+
+[06/13/2023 00:40] prapandey031
+Great!
+Would love to know more similar hacks.
+Can we DM each other?
+
+{Reactions}
+👍 
+
+[06/13/2023 07:53] c145h
+I realized I missed Recommended Mitigation Steps for a finding
+Will the judge or sponsors contact me for more clarification?
+
+
+[06/13/2023 10:03] kodak_rome
+@kartoonjoy | C4 🎇🎇 pls how do I initiate the verification process?
+
+
+[06/13/2023 10:04] kartoonjoy
+https://docs.code4rena.com/roles/certified-contributors
+
+{Embed}
+https://docs.code4rena.com/roles/certified-contributors
+Certified contributors
+In order to create opportunities for contributions which rely on establishment of trust, Code4rena allows community members to opt into certifying their identity and entering into a simple agreement.
+
+{Reactions}
+👍 
+
+[06/13/2023 19:58] 0k_sec
+Try to replay the email you send and tell them about your recommendation ser
+
+
+[06/14/2023 14:16] c145h
+Thank you,
+you mean the email I received when I submitted?
+
+
+[06/14/2023 14:20] 0k_sec
+Yep replay that email
+
+{Reactions}
+👍🏻 (2) 
+
+[06/14/2023 14:23] kartoonjoy
+Hi there. You dont need to reply to the email. If the judge has a concern, we'd reach out to you.
+
+
+[06/14/2023 14:24] c145h
+Got you, thank you
+
+{Reactions}
+hi5 
+
+[06/16/2023 18:42] cloudellie (pinned)
+**Important**❗- the privacy & confidentiality settings for this audit were clarified with the contest team and updated to: **the audit findings and report will be kept private to the sponsor team and +backstage wardens only. **
+
+C4 staff will add +backstage wardens to the findings repo shortly.
+
+Friendly reminder that as with all Code4rena audits, your participation is bound by the Certified Contributor agreement as well as C4 participation guidelines.
+
+{Reactions}
+👍 (9) 🙌 (3) 
+
+[06/16/2023 18:43] cloudellie
+Pinned a message.
+
+
+[06/26/2023 12:03] 0k_sec
+guys can someone tell me how much submissions have been send in this contest? just want to know 🙂
+
+
+[06/28/2023 10:47] auditsea
+Then how do normal wardens know that how many findings are valid and rewarded for them?
+
+
+[06/28/2023 12:04] cloudellie
+Award announcement will be public 🙂
+
+{Reactions}
+👍 (2) 
+
+[07/14/2023 20:20] c145h
+Wen moon?
+
+
+[07/14/2023 20:21] c145h
+Started a thread.
+
+
+[07/18/2023 18:52] c145h
+Now that Chainlink deployed CCIP, announcement will be soon?
+
+
+[07/18/2023 19:14] thebrittfactor
+The judging is still in process! Should be finishing up in the next couple of days. Awarding to follow 🙂
+
+{Reactions}
+👍🏻 (7) praisethesun 
+
+[07/22/2023 06:16] 0xepley
+Almost done
+
+{Reactions}
+🔥 
+
+[07/22/2023 06:22] c145h
+Thank you. Where did you get that info btw? I thought even backstage can't see result
+
+
+[07/22/2023 07:07] 0xepley
+we can see the issues and the progress
+
+
+[07/22/2023 07:08] c145h
+Got you, I misunderstood
+
+
+[07/25/2023 07:18] turvec_dev
+https://tenor.com/view/waiting-gif-23395435
+
+{Embed}
+https://tenor.com/view/waiting-gif-23395435
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/waiting-BA6F8.png
+
+{Reactions}
+😋 (4) 
+
+[07/25/2023 09:19] shubh0412
+:4739_Skeletor:
+
+
+[07/25/2023 13:23] xyzbtchunt
+https://tenor.com/view/sleep-time-gif-25989081
+
+{Embed}
+https://tenor.com/view/sleep-time-gif-25989081
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/sleep-time-A33CE.png
+
+
+[07/25/2023 18:11] sixiecow
+https://tenor.com/view/waiting-spongebob-coffee-sad-gif-16525719
+
+{Embed}
+https://tenor.com/view/waiting-spongebob-coffee-sad-gif-16525719
+Code4rena - ARCHIVE-Q2-2023 - chainlink-may26 [1111039219952009316].txt_Files/waiting-spongebob-E9A89.png
+
+
+[07/26/2023 19:46] 0k_sec
+can anyone tell us if the judge state is at final stage or not please 🙂 ?
+
+
+[07/26/2023 20:49] thebrittfactor
+judging is complete! We are currently working on some final tasks. I anticipate we'll announce awards tomorrow 🙂
+
+{Reactions}
+🔥 (10) code4rena (2) 10_10 (2) 
+
+[07/26/2023 20:50] 0k_sec
+the best message i ever read in my auditing career, thanks ser :chefskiss:
+
+{Reactions}
+🤣 (8) hi5 (4) 
+
+[07/28/2023 03:57] liveactionllamac4
+🤑 🎉  Awards for **Chainlink Cross-Chain Services: CCIP and ARM Network**:
+
+$45,347.05 USDC » @rvierdiiev 
+$23,168.46 USDC » @AkshaySrivastav 
+$18,910.41 USDC » @0xRobocop 
+$10,546.00 USDC » @Trust  
+$10,060.59 USDC » @ronnyx2017 | Offside Labs 
+$7,993.60 USDC » @kutu 
+$6,845.78 USDC » @BlockSails 
+$6,300.97 USDC » @MiloTruck 
+$5,005.18 USDC » @nobody2018 
+$4,629.53 USDC » parlayan_yildizlar_takimi (@ulas, @caglankaan, & @ata) 
+$4,386.49 USDC » @bin2chen 
+$4,329.19 USDC » @J4de 
+$3,858.84 USDC » @cccz 
+$3,805.62 USDC » @BAHOZ 
+$3,746.20 USDC » @curiousapple 
+$3,544.41 USDC » @Lirios  
+$3,107.27 USDC » @Parad0x 
+$2,094.70 USDC » @aviggiano 
+$1,772.20 USDC » @beam_suuun 
+$1,440.80 USDC » @Pedroais 
+$1,327.35 USDC » @0xsanson 
+$1,248.19 USDC » Ack (@popular00 & @igorline) 
+$1,226.45 USDC » @said 
+$1,226.45 USDC » @0xDACA 
+$1,130.98 USDC » @nemveer 
+$929.19 USDC » @0xTheC0der 
+$929.19 USDC » @Franfran 
+$890.40 USDC » Cyfrin (@PatrickAlphaC, @giovannidisiena, @hansfriese, @0Kage, @alexroan, & @carlitox477) 
+$883.33 USDC » BPZ (@Bitcoinfever244, @Yas000X, & @zinc42) 
+$883.33 USDC » @Viktor_Cortess 
+$883.33 USDC » @Kaden 
+$881.43 USDC » @Kenshin 
+$689.32 USDC » @Soosh 
+$665.09 USDC » @joestakey 
+$642.75 USDC » @Sathish9098  
+$642.75 USDC » @ICP 
+$642.75 USDC » @MrPotatoMagic 
+$571.03 USDC » @descharre 
+$557.47 USDC » @pumpkin 
+$511.61 USDC » @_eperezok 
+$511.61 USDC » los_chicos (@vnmrtz.eth & @0xadrii)  
+$511.61 USDC » @ulqiorra 
+$441.67 USDC » @jasonxiale 
+$343.12 USDC » @gjaldon 
+$343.12 USDC » @immeas 
+$307.07 USDC » @0xnev 
+$301.66 USDC » @MohammedRizwan 
+$255.80 USDC » @Jorgect 
+$255.80 USDC » @innertia 
+$255.80 USDC » @m9800 
+$201.79 USDC » @T1MOH 
+$201.79 USDC » @bytes032 
+$201.79 USDC » @ayden 
+$201.79 USDC » @VAD37 
+$201.79 USDC » @audinarey 
+$201.79 USDC » @hihen 
+$201.79 USDC » @nirlin 
+$201.79 USDC » @Dug 
+$201.79 USDC » @imare 
+$201.79 USDC » @nowait 
+$146.76 USDC » @marcKn 
+$100.90 USDC » @amaechi eth  
+$100.90 USDC » @EricTee 
+$59.42 USDC » @0xhacksmithh 
+$59.42 USDC » @RaymondFam 
+$59.42 USDC » @CarlosR 
+$59.42 USDC » @K42 Ψ  
+$59.42 USDC » @0xmichalis 
+$59.42 USDC » @JCN 
+$59.42 USDC » @0xSmartContract 
+$59.42 USDC » @0xn006e7  
+$59.42 USDC » @turvy_fuzz 
+$59.42 USDC » @c3phas  
+$59.42 USDC » @NiSeR 
+$59.42 USDC » @Shubham 
+$45.86 USDC » @hen 
+$45.86 USDC » @peanuts 
+$45.86 USDC » @Udsen  
+
+Awards will be distributed on Polygon within the next week. Congratulations all!  💸 💸 💸
+
+:siren: Friendly reminder: as mentioned previously here: https://discord.com/channels/810916927919620096/1111039219952009316/1119336174000025760, please note that the audit findings and report will be kept private to the sponsor team and +backstage wardens only. We'll post the aggregate data to the leaderboard, but please no discussions regarding the content of findings whatsoever.
+
+{Reactions}
+🙏 (17) 🔥 (15) 👽 
+
+[07/28/2023 04:02] coffiasd
+:hi5: :hi5:
+
+
+[07/28/2023 04:19] milotruck
+Congrats everyone!
+
+
+[07/28/2023 04:20] 0xnevi
+This was a tough one, C4 wardens are really on another level. Congrats everyone 💪
+
+P.S Shout out to judge @Alex The Entreprenerd  for judging this and always leaving constructive feedback for wardens
+
+{Reactions}
+💜 (8) 🙏 
+
+[07/28/2023 04:56] shubh0412
+Getting certified was worth seeing my name in the leaderboard 🙏🏻
+
+
+[07/28/2023 05:20] .eperez
+Hi! I started the KYC process before the contest ended (i.e. before June 12th), but I never actually submitted the last document I was requested. Can I still finish the process now and get the award?
+I totally understand if it's not possible, but wanted to ask just in case 😅
+
+
+[07/28/2023 05:23] liveactionllamac4
+Yes, you can proceed.
+
+
+[07/28/2023 05:24] .eperez
+great, thanks!
+
+{Reactions}
+hi5 
+
+[07/28/2023 06:03] 0xnirlin
+will do the next chainlink audit for the culture 🫡
+
+
+[07/28/2023 06:21] t1moh
+Ok, I have improved in the last 2 months and will hit harder on next Chainlink 🫡
+
+{Reactions}
+🫡 (3) 
+
+[07/28/2023 09:14] daniel526
+Damn! Didn't appear here again, what's wrong with my submissions on Code4rena?
+
+
+[07/28/2023 09:49] MHKK33#5972
+How can I check why my submission rejected to improve my submissions next time.
+
+
+[07/28/2023 10:04] nobody2018
+you can apply for backstage to check all issues.
+
+
+[07/28/2023 10:12] raihan3727
+How?
+
+
+[07/28/2023 10:13] nobody2018
+https://docs.code4rena.com/roles/certified-contributors/backstage-wardens
+
+{Embed}
+https://docs.code4rena.com/roles/certified-contributors/backstage-wardens
++Backstage wardens
+
+
+[07/28/2023 16:28] munakhan12#8137
+Hi
+
+
+[07/28/2023 16:28] munakhan12#8137
+Congratulations everyone
+
+
+[08/17/2023 15:34] prajanbhattarai
+is it possible to survive solely based on code arena ?
+
+
+[08/17/2023 16:56] 0xstalin
+Let's say you are capable of getting average results, like 2-3k per month, it depends where you live, probably in Europe, USA, and Canada it might be quite difficult to make a living with that budget, but in most LATAM countries, India, middle east countries I believe you can afford a nice lifestyle
+
+
+[08/17/2023 17:02] sockdrawermoney
+and if you can get high enough ranking to get the opportunity to compete in invitationals, should be able to make a comfortable living anywhere
+
+{Reactions}
+🫡 (6) 
+
+[08/17/2023 18:05] cryptor9119
+2-3k per month is not average at all. That would put you in the top 50 on code4rena.
+
+
+[08/17/2023 18:17] mike_bello90
+how do you get that ranking?
+
+
+[08/17/2023 18:20] 0xnevi
+Anything is possible, if you’re skilled enough and work hard enough.
+
+{Reactions}
+🌈 
+
+[08/17/2023 18:39] sockdrawermoney
+Most people don’t actually compete full time and many leverage c4 in between other gigs, so reading those numbers that way is probably not as helpful as could be presumed
+
+{Reactions}
+☝️ 
+
+[08/17/2023 18:40] sockdrawermoney
+Basically highest ranks on leaderboard get opportunities based on their availability, but availability fluctuates of course
+
+{Reactions}
+😯 
+
+[08/17/2023 20:49] mike_bello90
+get it thanks
+
+
+[08/22/2023 09:21] vnmrtz
+@🦙 liveactionllama | C4 are the awards already sent?
+
+
+[08/22/2023 14:48] thebrittfactor
+sending you a DM!
+
+{Reactions}
+thankyou (2) 
+
+[09/12/2023 14:36] davidgiladi
+Have Someone succeeded to run slither on all the contract sub directories?
+
+
+[10/02/2023 16:00] devabdee
+Nope.
+
+
+[12/27/2023 01:45] felipenovaesrocha
+How can i see the reports from that contest?
+
+
+==============================================================
+Exported 393 message(s)
+==============================================================
