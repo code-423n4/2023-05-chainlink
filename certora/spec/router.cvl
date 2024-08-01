@@ -1,0 +1,57 @@
+// Router.spec
+
+using Router as router;
+
+methods{
+    function getWrappedNative() external returns (address) envfree;
+    function isChainSupported(uint64) external returns (bool) envfree;
+    function getOnRamp(uint64) external returns (address) envfree;
+    function owner() external returns (address) envfree;
+    function isOffRamp(address) external returns (bool, uint64) envfree;
+    function getSupportedTokens(uint64) external returns (address[]) envfree;
+    function routeMessage(Client.Any2EVMMessage, uint16, uint256, address) external returns (bool);
+    function typeAndVersion() external returns (string) envfree;
+    function recoverTokens(address, address, uint256) external;
+
+}
+
+definition isZeroAddress(address addr) returns bool = addr == 0;
+
+rule onlyOwnerCanSetWrappedNative(address newWrappedNative) {
+    env e;
+    address oldWrappedNative = router.getWrappedNative();
+    router.setWrappedNative(e, newWrappedNative);
+    assert e.msg.sender == router.owner() => router.getWrappedNative() == newWrappedNative;
+    assert e.msg.sender != router.owner() => router.getWrappedNative() == oldWrappedNative;
+}
+
+
+rule canSendMessageToSupportedChain(uint64 chainId, Client.EVM2AnyMessage message) {
+    env e;
+    require router.isChainSupported(chainId);
+    require message.feeToken != 0; 
+    
+    bytes32 messageId = router.ccipSend(e, chainId, message);
+    satisfy !lastReverted;
+}
+
+
+
+rule getSupportedTokensEmptyForUnsupportedChains(uint64 chainId) {
+    env e;
+    require !router.isChainSupported(chainId);
+    
+    address[] supportedTokens = router.getSupportedTokens(e, chainId);
+    
+    assert supportedTokens.length == 0;
+}
+
+rule nonOwnerCannotRecoverTokens(address token, address to, uint256 amount) {
+    env e;
+    require e.msg.sender != router.owner();
+    
+    router.recoverTokens@withrevert(e, token, to, amount);
+    
+    assert lastReverted;
+}
+
